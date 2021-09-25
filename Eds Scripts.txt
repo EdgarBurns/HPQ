@@ -1,0 +1,310 @@
+
+Ed1.py
+======
+
+import RPi.GPIO as GPIO
+import time
+import random
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
+
+GPIO.output(8, GPIO.HIGH)
+
+
+Ed2.py
+======
+
+
+import RPi.GPIO as GPIO
+import time
+import random
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
+
+GPIO.output(8, GPIO.HIGH)
+
+while True:
+
+    interval = random.random() * 2
+    print "sleep interval set for ", interval, "s"
+
+    GPIO.output(8, GPIO.HIGH)
+    time.sleep(interval)
+
+    GPIO.output(8, GPIO.LOW)
+    time.sleep(interval)
+
+
+
+Ed3.py
+======
+
+import RPi.GPIO as GPIO
+import time
+import random
+import socket
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
+
+GPIO.output(8, GPIO.HIGH)
+
+UDP_IP = "192.168.0.72"
+UDP_PORT = 5050
+
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+
+while True:
+
+    data, addr = sock.recvfrom(1024)
+    raw=data
+
+    interval = random.random() * 2
+
+    GPIO.output(8, GPIO.HIGH)
+    time.sleep(interval)
+
+
+    print "sleep interval set for ", interval, "s"
+
+    GPIO.output(8, GPIO.LOW)
+    time.sleep(interval)
+
+
+Ed4.py
+======
+
+import RPi.GPIO as GPIO
+import time
+import random
+import socket
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
+
+GPIO.output(8, GPIO.HIGH)
+
+UDP_IP = "192.168.0.72"
+UDP_PORT = 5050
+
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+
+while True:
+
+    data, addr = sock.recvfrom(1024)
+    raw=data
+
+    if raw=="forward":
+        GPIO.output(8,True)
+        print "Robot Move Forward"
+
+
+    elif raw=="stop":
+        GPIO.output(8,False)
+        print "Robot Stop"
+
+
+    elif raw=="backward":
+        GPIO.output(8,False)
+        print "Robot Move Backward"
+
+    elif raw=="left":
+        GPIO.output(8,False)
+        print "Robot Move Left"
+
+    elif raw=="right":
+        GPIO.output(8,True)
+        print "Robot Move Right"
+
+    else:
+        print "STOP"
+        GPIO.output(8,False)
+
+
+
+Ed5.py
+======
+
+import RPi.GPIO as GPIO
+import time
+import random
+import socket
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(10, GPIO.OUT, initial=GPIO.HIGH)
+
+UDP_IP = "192.168.0.72"
+UDP_PORT = 5050
+
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+
+while True:
+
+    data, addr = sock.recvfrom(1024)
+    raw=data
+
+    if raw=="forward":
+        GPIO.output(8,True)
+        GPIO.output(10,False)
+        print "Robot Move Forward"
+
+
+    elif raw=="stop":
+        GPIO.output(8,False)
+        GPIO.output(10,False)
+        print "Robot Stop"
+
+
+    elif raw=="backward":
+        GPIO.output(8,False)
+        GPIO.output(10,True)
+        print "Robot Move Backward"
+
+    elif raw=="left":
+        GPIO.output(8,False)
+        GPIO.output(10,True)
+        print "Robot Move Left"
+
+    elif raw=="right":
+        GPIO.output(8,True)
+        GPIO.output(10,False)
+        print "Robot Move Right"
+
+    else:
+        print "STOP"
+        GPIO.output(8,False)
+        GPIO.output(10,False)
+
+
+Ed6.py
+======
+
+
+import RPi.GPIO as GPIO
+import time
+import random
+import socket
+
+print "PI Type:      ",GPIO.RPI_INFO['TYPE']
+print "Revision:     ",GPIO.RPI_INFO['P1_REVISION']
+print "Processor:    ",GPIO.RPI_INFO['PROCESSOR']
+print "RAM:          ",GPIO.RPI_INFO['RAM']
+print "Manufacturer: ",GPIO.RPI_INFO['MANUFACTURER']
+print "GPIO Version: ",GPIO.VERSION
+print
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(10, GPIO.OUT, initial=GPIO.HIGH)
+
+UDP_IP = "192.168.0.72"
+UDP_PORT = 5050
+
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+
+while True:
+
+    data, addr = sock.recvfrom(1024)
+    raw=data
+
+    if raw=="forward":
+        GPIO.output(8,True)
+        GPIO.output(10,True)
+        print "Robot Move Forward"
+
+
+    elif raw=="stop":
+        GPIO.output(8,False)
+        GPIO.output(10,False)
+        print "Robot Stop"
+
+
+    elif raw=="backward":
+        GPIO.output(8,False)
+        GPIO.output(10,True)
+        print "Robot Move Backward"
+
+    elif raw=="left":
+        GPIO.output(8,False)
+        GPIO.output(10,True)
+        print "Robot Move Left"
+
+    elif raw=="right":
+        GPIO.output(8,True)
+        GPIO.output(10,False)
+        print "Robot Move Right"
+
+    else:
+        print "STOP"
+        GPIO.output(8,False)
+        GPIO.output(10,False)
+
+
+
+
+
+
+
+
+
+
+
